@@ -9,8 +9,8 @@ app_port: 7860
 
 <div align="center">
 
-# 🌻 VeriScribe: Academic Intelligence Engine
-**Truth in Every Scribe. 100% Offline. Zero-Hallucinations. CPU-Optimized.**
+# 🌻 VeriScribe: Literature Review Assistant
+**Truth in Every Scribe. 100% Offline. Zero-Hallucinations. Built for Academia.**
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
@@ -26,14 +26,14 @@ app_port: 7860
 
 ---
 
-## 🌟 Why VeriScribe?
+## 🌟 Why VeriScribe for Literature Reviews?
 
-When using cloud-based generative AI (like standard ChatGPT) for academic research, you run into three massive problems:
-1. **Hallucinations:** Generative models often invent facts, combine authors incorrectly, or summarize points that were never in the actual paper.
-2. **Privacy:** Uploading pre-published academic work or sensitive corporate PDFs to cloud servers violates data privacy.
+Conducting a literature review requires reading dozens of dense, 30-page academic papers. When researchers try to speed this up using cloud-based generative AI (like standard ChatGPT), they run into three massive problems:
+1. **Hallucinations:** Generative models often invent fake citations, combine authors incorrectly, or summarize methodologies that were never in the actual paper.
+2. **Privacy:** Uploading pre-published academic work, lab data, or copyrighted journals to cloud servers violates data privacy laws.
 3. **Cost & Hardware:** Running massive context-window LLMs locally usually requires a $2,000 NVIDIA GPU.
 
-**VeriScribe solves all of this.** By utilizing a hybrid pipeline of **Mathematical Extraction** and **INT8 Dynamic Quantized Abstractive AI**, it provides an incredibly fast, highly accurate research assistant that runs smoothly on a standard laptop CPU.
+**VeriScribe solves all of this.** By utilizing a hybrid pipeline of **Mathematical Extraction** and **INT8 Dynamic Quantized Abstractive AI**, it provides an incredibly fast, highly accurate Literature Review Assistant that runs smoothly on a standard laptop CPU.
 
 ---
 
@@ -180,6 +180,12 @@ To free up your memory, click inside your Terminal and press:
 | **`pip is not recognized`** | You forgot to check "Add Python to PATH" in Step 1. Reinstall Python and check the box! |
 | **OOM / Memory Crash** | PyTorch needs free RAM for matrix equations. Close heavy Chrome tabs or video games before generating. |
 | **Slow Generation** | Ensure you are not running other heavy CPU tasks. The INT8 quantization requires a clean CPU thread pool to achieve 2x speed. |
+
+---
+
+## ⚖️ License
+
+This project is licensed under the **MIT License**. You are free to use, modify, and distribute this software for both academic and commercial purposes, provided you include the original copyright notice.
 
 ---
 
