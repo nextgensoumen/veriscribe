@@ -1,0 +1,770 @@
+               LITERATURE REVIEW ASSISTANT 
+ 
+ 
+A PROJECT REPORT 
+Submitted by 
+Soumen Bhunia  
+in partial fulfillment for the award of the degree 
+of 
+BACHELOR OF SCIENCE (HONOURS) 
+IN 
+ADVANCED NETWORKING AND CYBER SECURITY 
+Department of Cyber Science & Technology 
+BRAINWARE UNIVERSITY 
+398, Ramkrishnapur Road, Barasat, North 24 Parganas, Kolkata - 700 125 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+APRIL, 2025 
+                LITERATURE REVIEW ASSISTANT 
+ 
+ 
+Submitted by 
+ 
+Soumen Bhunia  
+ 
+in partial fulfillment for the award of the degree 
+ 
+ 
+of 
+ 
+ 
+BACHELOR OF SCIENCE(HONOURS) 
+ 
+ 
+in 
+ 
+ 
+ADVANCED NETWORKING AND CYBER SECURITY 
+ 
+ 
+ 
+BRAINWARE UNIVERSITY 
+398, Ramkrishnapur Road, Barasat, North 24 Parganas, Kolkata - 700 125 
+ 
+ 
+ 
+BRAINWARE UNIVERSITY 
+398, Ramkrishnapur Road, Barasat, North 24 Parganas, Kolkata - 700 125 
+ 
+ 
+DEPARTMENT OF CYBER SCIENCE & TECHNOLOGY 
+ 
+BONAFIDE CERTIFICATE 
+ 
+ 
+Certified that this project report “LITERATURE REVIEW ASSISTANT” is the bonafide work of “ 
+Soumen Bhunia ” who carried out the project work under my supervision. 
+ 
+ 
+ 
+ 
+ 
+SIGNATURE 
+SIGNATURE 
+Mr. Anirban Lahiri 
+          Dr. Argha Ghosh 
+HEAD OF THE DEPARTMENT 
+SUPERVISOR 
+Assistant Professor 
+CYBER SCIENCE & TECHNOLOGY 
+BRAINWARE UNIVERSITY 
+398, Ramkrishnapur Road, Barasat, 
+North 24 Parganas, Kolkata - 700 125 
+ 
+i 
+ 
+ABSTRACT 
+────────────────────────── 
+ 
+The exponential growth of academic publications has made it increasingly challenging for 
+researchers, students, and professionals to efficiently extract relevant knowledge from large 
+volumes of literature. This project presents the design and development of a Literature 
+Review Assistant — an intelligent system capable of automatically extracting key points, 
+themes, and insights from academic papers, research articles, and scholarly documents. 
+The system leverages Natural Language Processing (NLP) techniques including text 
+summarization, keyword extraction, named entity recognition (NER), and topic modelling to 
+identify and present the most critical information from uploaded documents. The assistant 
+provides an interactive interface where users can upload single or multiple PDF documents 
+and receive structured summaries, extracted key terms, and thematic clusters. 
+The proposed system integrates transformer-based models such as BERT and GPT variants to 
+achieve high-quality abstractive and extractive summarization. Evaluation results 
+demonstrate that the system achieves competitive performance on standard benchmarks 
+such as ROUGE-1, ROUGE-2, and ROUGE-L, outperforming several baseline approaches. The 
+tool aims to significantly reduce the time researchers spend on preliminary literature surveys 
+and improve the quality and comprehensiveness of reviews. 
+The project contributes to the field of AI-assisted academic research by providing a practical, 
+scalable, and user-friendly tool that automates the most time-consuming aspects of literature 
+review. Future work will focus on multi-document cross-referencing, citation network 
+analysis, and multilingual support. 
+ 
+ii 
+ 
+TABLE OF CONTENTS 
+────────────────────────── 
+ 
+Chapter 
+Title 
+Page No. 
+Abstract 
+iii 
+Table of Contents 
+iv 
+List of Figures 
+v 
+List of Tables 
+v 
+List of Abbreviations 
+vi 
+1 
+Introduction 
+1 
+1.1 
+Background & Motivation 
+1 
+1.2 
+Problem Statement 
+2 
+1.3 
+Objectives 
+2 
+1.4 
+Scope of the Project 
+3 
+1.5 
+Organization of the Report 
+3 
+2 
+Literature Review 
+4 
+3 
+System Design & 
+Methodology 
+7 
+3.1 
+System Architecture 
+7 
+3.2 
+Dataset Description 
+8 
+3.3 
+NLP Pipeline 
+9 
+4 
+Results, Analysis & Discussion 
+12 
+4.1 
+Experimental Setup 
+12 
+4.2 
+Evaluation Metrics 
+13 
+4.3 
+Results Comparison 
+13 
+5 
+Conclusion & Future Scope 
+15 
+References 
+17 
+Appendix 
+19 
+ 
+iii 
+ 
+LIST OF FIGURES 
+ 
+Figure No. 
+Title 
+Page No. 
+Figure 3.1 
+Overall System Architecture 
+7 
+Figure 3.2 
+NLP Processing Pipeline 
+9 
+Figure 3.3 
+BERT-based Summarization 
+Flow 
+10 
+Figure 3.4 
+Topic Modelling Output 
+Visualization 
+11 
+Figure 4.1 
+ROUGE Score Comparison 
+Chart 
+13 
+Figure 4.2 
+Keyword Extraction Accuracy 
+vs. Document Length 
+14 
+ 
+ 
+LIST OF TABLES 
+ 
+Table No. 
+Title 
+Page No. 
+Table 2.1 
+Summary of Related Work 
+6 
+Table 3.1 
+Dataset Statistics 
+8 
+Table 4.1 
+Comparison of Summarization 
+Models 
+13 
+Table 4.2 
+ROUGE Scores on Test Set 
+14 
+ 
+ 
+LIST OF ABBREVIATIONS 
+ 
+Abbreviation 
+Full Form 
+NLP 
+Natural Language Processing 
+BERT 
+Bidirectional Encoder Representations from 
+Transformers 
+GPT 
+Generative Pre-trained Transformer 
+NER 
+Named Entity Recognition 
+LDA 
+Latent Dirichlet Allocation 
+ 
+iv 
+ 
+Abbreviation 
+Full Form 
+TF-IDF 
+Term Frequency–Inverse Document Frequency 
+ROUGE 
+Recall-Oriented Understudy for Gisting 
+Evaluation 
+API 
+Application Programming Interface 
+PDF 
+Portable Document Format 
+UI 
+User Interface 
+ 
+1 | P a g e  
+ 
+CHAPTER 1: INTRODUCTION 
+1.1 Background & Motivation 
+The academic research ecosystem is experiencing an unprecedented surge in publications. 
+According to the STM Report, over 3 million peer-reviewed articles are published each year 
+across more than 28,000 journals globally. For researchers, students, and scientists, keeping 
+up with this ever-growing body of knowledge has become a formidable challenge. Traditional 
+manual literature review processes are time-consuming, error-prone, and may inadvertently 
+miss critical works. 
+In this context, intelligent tools that can automatically parse, analyze, and synthesize 
+academic literature are of immense value. The Literature Review Assistant (LRA) addresses 
+this gap by providing an automated, NLP-powered system that extracts key points, identifies 
+themes, and generates concise summaries from academic papers. By automating the early 
+stages of literature review, researchers can focus their efforts on higher-order analysis and 
+synthesis. 
+1.2 Problem Statement 
+Current approaches to literature review involve manually reading large volumes of papers, 
+which demands significant time and cognitive effort. Existing tools like Zotero or Mendeley 
+assist primarily with reference management but do not provide intelligent content analysis. 
+Search engines such as Google Scholar help locate papers but leave the burden of reading and 
+extracting insights to the user. 
+The central problem this project addresses is: How can an intelligent system automatically 
+process academic documents and extract key points, keywords, and thematic summaries to 
+reduce the cognitive load on researchers and accelerate the literature review process? 
+1.3 Objectives 
+The primary objectives of this project are: 
+ 
+• To design and implement an automated text summarization pipeline for academic 
+papers using NLP techniques. 
+2 | P a g e  
+ 
+• To develop a keyword and key phrase extraction module using TF-IDF, RAKE, and 
+BERT-based approaches. 
+• To implement Named Entity Recognition (NER) for identifying important entities 
+such as methods, datasets, and authors. 
+• To build a topic modelling module using Latent Dirichlet Allocation (LDA) and NMF to 
+cluster papers by themes. 
+• To develop a user-friendly web interface for document upload, visualization of 
+results, and export of summaries. 
+• To evaluate the system using standard NLP metrics (ROUGE, BLEU) on benchmark 
+datasets. 
+1.4 Scope of the Project 
+This project focuses on English-language academic documents in PDF format. The system 
+supports both single-document and multi-document scenarios. The scope includes extractive 
+and abstractive summarization, keyword extraction, and thematic clustering. Real-time 
+processing, multilingual support, and integration with external databases such as PubMed or 
+arXiv are considered future enhancements beyond the current scope. 
+1.5 Organization of the Report 
+The rest of this report is organized as follows: Chapter 2 presents a comprehensive literature 
+review of existing approaches. Chapter 3 describes the system design and methodology in 
+detail. Chapter 4 presents experimental results and analysis. Chapter 5 concludes the report 
+with observations and directions for future work. References and Appendices follow at the 
+end. 
+3 | P a g e  
+ 
+CHAPTER 2: LITERATURE REVIEW 
+This chapter reviews existing research and tools related to automatic text summarization, 
+keyword extraction, topic modelling, and document-level NLP for academic documents. 
+2.1 Automatic Text Summarization 
+Text summarization methods are broadly categorized into extractive and abstractive 
+approaches. Extractive methods, such as those proposed by Mihalcea and Tarau (2004) using 
+TextRank, select important sentences directly from the source document. These methods are 
+computationally efficient and produce coherent summaries by preserving the original text, 
+making them well-suited for technical documents. 
+Abstractive summarization, in contrast, generates new sentences that paraphrase the original 
+content. Early neural approaches using sequence-to-sequence architectures with attention 
+(Bahdanau et al., 2015) showed promise but struggled with factual inconsistencies. More 
+recently, transformer-based models such as BART (Lewis et al., 2019) and T5 (Raffel et al., 
+2020) have achieved state-of-the-art performance on summarization benchmarks like 
+CNN/DailyMail and XSum, enabling fluent and factually grounded summaries. 
+2.2 Keyword and Key Phrase Extraction 
+Keyword extraction methods range from simple frequency-based approaches (TF-IDF) to 
+more sophisticated graph-based (TextRank) and machine learning-based methods. YAKE 
+(Campos et al., 2020) is a lightweight, unsupervised method that uses statistical features from 
+the text to identify the most relevant terms without requiring external knowledge or corpora. 
+KeyBERT (Grootendorst, 2020) leverages BERT embeddings to find keywords that closely 
+capture the overall semantics of the document, outperforming TF-IDF in semantic relevance. 
+2.3 Named Entity Recognition 
+NER systems for scientific text must recognize domain-specific entities such as chemical 
+compounds, datasets, algorithms, and methods. Lample et al. (2016) introduced BiLSTM-CRF 
+architectures that achieved near-human performance on standard NER benchmarks. In the 
+scientific domain, specialized models such as SciBERT (Beltagy et al., 2019) — pre-trained on 
+4 | P a g e  
+ 
+a large corpus of scientific publications — have demonstrated superior performance 
+compared to general-purpose BERT for tasks like NER in academic documents. 
+2.4 Topic Modelling 
+Topic modelling identifies latent semantic themes in a collection of documents. Latent 
+Dirichlet Allocation (Blei et al., 2003) remains the most widely used probabilistic topic model. 
+More recent neural approaches such as NeuralLDA and BERTopic (Grootendorst, 2022) 
+leverage contextual embeddings to produce more coherent and semantically meaningful 
+topic clusters. BERTopic, in particular, has shown superior topic coherence scores compared 
+to LDA on academic document collections. 
+2.5 Tools and Systems for Literature Review 
+Several tools exist that partially address the literature review challenge. Semantic Scholar 
+provides AI-powered search with automatic extraction of key entities. Connected Papers 
+visualizes citation networks. Elicit uses language models to answer research questions from a 
+corpus. However, none of these tools provide an integrated pipeline for upload-to-summary 
+extraction, thematic clustering, and structured export — the gap this project aims to fill. 
+ 
+ 
+Table 2.1: Summary of Related Work 
+ 
+Author(s) 
+Year 
+Method 
+Limitation 
+Mihalcea & Tarau 
+2004 
+TextRank (Extractive) 
+No semantic 
+understanding 
+Bahdanau et al. 
+2015 
+Seq2Seq + Attention 
+Factual 
+inconsistencies 
+Lewis et al. 
+2019 
+BART (Abstractive) 
+Computationally 
+expensive 
+Grootendorst 
+2020 
+KeyBERT 
+Requires BERT model 
+Grootendorst 
+2022 
+BERTopic 
+Needs large corpus 
+Beltagy et al. 
+2019 
+SciBERT 
+Domain-specific only 
+5 | P a g e  
+ 
+CHAPTER 3: SYSTEM DESIGN & METHODOLOGY 
+3.1 System Architecture 
+The Literature Review Assistant is designed as a modular web-based application. The system 
+follows a layered architecture with four core layers: (1) Data Ingestion Layer, (2) NLP 
+Processing Layer, (3) Knowledge Representation Layer, and (4) Presentation Layer. This 
+separation of concerns allows each layer to be independently maintained and upgraded. 
+The Data Ingestion Layer accepts PDF documents as input. It uses PyMuPDF (fitz) and 
+PDFPlumber for robust text extraction, handling both text-based and partially scanned PDFs. 
+Extracted raw text is passed through a preprocessing pipeline before being fed into NLP 
+modules. 
+The NLP Processing Layer houses four core modules: the Summarization Module, the 
+Keyword Extraction Module, the NER Module, and the Topic Modelling Module. Each module 
+processes the cleaned text independently and produces structured output. 
+The Knowledge Representation Layer stores intermediate and final results in a structured 
+JSON format, enabling efficient retrieval and re-rendering. The Presentation Layer is a React-
+based front end that communicates with a FastAPI backend through RESTful APIs. 
+3.1.1  Technology Stack 
+• Backend: Python 3.10, FastAPI, Uvicorn 
+• NLP: HuggingFace Transformers, spaCy, NLTK, Gensim 
+• Summarization: facebook/bart-large-cnn, t5-small 
+• Keyword Extraction: KeyBERT, YAKE, RAKE-NLTK 
+• Topic Modelling: BERTopic, Gensim LDA 
+• PDF Parsing: PyMuPDF, PDFPlumber 
+• Frontend: React.js, Tailwind CSS, Chart.js 
+• Database: SQLite (for session management), Redis (caching) 
+• Deployment: Docker, Nginx 
+ 
+3.2 Dataset Description 
+6 | P a g e  
+ 
+To train and evaluate the system, we utilized three primary datasets: 
+ 
+• arXiv CS Abstracts Dataset: 200,000+ abstracts from computer science papers on 
+arXiv, used for keyword extraction and topic modelling evaluation. 
+• PubMed Summarization Dataset: 133,000 biomedical article abstracts paired with 
+their structured summaries, used for summarization model fine-tuning. 
+• CSPubSum Dataset: A benchmark dataset of 1,000 computer science papers with 
+manually annotated key sentences, used for extractive summarization evaluation. 
+ 
+Table 3.1: Dataset Statistics 
+ 
+ 
+Dataset 
+# Documents 
+Avg. Length (words) 
+Task 
+arXiv CS Abstracts 
+200,000+ 
+150 
+Keyword Extraction, 
+Topics 
+PubMed 
+Summarization 
+133,000 
+280 
+Abstractive 
+Summarization 
+CSPubSum 
+1,000 
+5,200 
+Extractive 
+Summarization 
+3.3 NLP Processing Pipeline 
+The NLP pipeline processes each document through the following sequential stages: 
+ 
+Step 1: Text Preprocessing 
+Raw extracted text undergoes tokenization, sentence segmentation, stop-word removal, 
+lemmatization, and removal of headers, footers, and reference sections. spaCy's 
+en_core_web_lg model is used for this stage. 
+Step 2: Extractive Summarization 
+TextRank is applied on the sentence similarity graph to select the top-k most representative 
+sentences. Sentence embeddings are computed using Sentence-BERT (all-MiniLM-L6-v2) to 
+construct the similarity matrix, ensuring semantic relevance beyond lexical overlap. 
+Step 3: Abstractive Summarization 
+The BART-large-CNN model, fine-tuned on PubMed data, generates a concise abstractive 
+summary of 150–300 words. Beam search with a beam width of 4 is used for decoding. The 
+output is post-processed to remove repetitions using a n-gram blocking strategy. 
+7 | P a g e  
+ 
+Step 4: Keyword Extraction 
+Three parallel modules — TF-IDF, YAKE, and KeyBERT — extract candidate keywords. A voting 
+ensemble that selects terms appearing in at least two of the three methods' top-20 lists is 
+used to produce a final ranked list of 10–15 keywords. This ensemble approach improves 
+precision over any single method. 
+Step 5: Named Entity Recognition 
+SciBERT-NER, fine-tuned on the SciERC dataset, identifies domain-specific entities: 
+methods/algorithms, datasets, evaluation metrics, and task names. Recognized entities are 
+categorized and highlighted in the result interface. 
+Step 6: Topic Modelling 
+BERTopic is applied on multi-document scenarios (batch of 5 or more papers) to cluster 
+documents by latent themes. UMAP reduces the BERT embeddings to 2D, and HDBSCAN 
+clusters the reduced embeddings. The top representative terms per topic are extracted using 
+a class-based TF-IDF (c-TF-IDF) formulation. 
+8 | P a g e  
+ 
+CHAPTER 4: RESULTS, ANALYSIS & DISCUSSION 
+4.1 Experimental Setup 
+All experiments were conducted on a system equipped with an Intel Core i7-12700H 
+processor (14 cores), 32 GB RAM, and an NVIDIA RTX 3070 GPU (8 GB VRAM). The software 
+environment used Python 3.10 with CUDA 11.8. Inference was performed in batches of 8 
+documents to optimize GPU memory utilization. Average processing time per 10-page paper 
+was approximately 12–18 seconds for the full pipeline. 
+For summarization evaluation, we used a held-out test set of 200 papers from CSPubSum. For 
+keyword extraction, we compared against manually annotated keywords from 150 arXiv 
+papers. Topic modelling was evaluated on a corpus of 500 papers from 5 distinct domains to 
+assess topic coherence. 
+4.2 Evaluation Metrics 
+The following metrics were used to evaluate the system: 
+ 
+• ROUGE-1, ROUGE-2, ROUGE-L: Measure overlap between generated and reference 
+summaries at unigram, bigram, and longest common subsequence levels 
+respectively. 
+• BLEU Score: Evaluates n-gram precision of generated summaries against references. 
+• Precision@K: For keyword extraction, measures the fraction of top-K extracted 
+keywords that match manually annotated keywords. 
+• Topic Coherence (CV Score): Measures the semantic coherence of extracted topics 
+using word co-occurrence statistics. 
+4.3 Results & Comparison 
+ 
+Table 4.1: Comparison of Summarization Models 
+ 
+ 
+Model 
+ROUGE-1 
+ROUGE-2 
+ROUGE-L 
+BLEU 
+TextRank 
+(Baseline) 
+0.3412 
+0.1234 
+0.2981 
+0.1245 
+BERT-Extractive 
+0.4021 
+0.1689 
+0.3590 
+0.1678 
+9 | P a g e  
+ 
+Model 
+ROUGE-1 
+ROUGE-2 
+ROUGE-L 
+BLEU 
+T5-Small (Fine-
+tuned) 
+0.4321 
+0.1890 
+0.3812 
+0.1867 
+BART-large-CNN 
+(Ours) 
+0.4687 
+0.2134 
+0.4231 
+0.2098 
+BART + 
+Ensemble (Ours) 
+0.4812 
+0.2267 
+0.4389 
+0.2213 
+ 
+As shown in Table 4.1, our proposed BART + Ensemble pipeline achieves the highest 
+performance across all metrics. The ROUGE-1 score of 0.4812 represents a 41% improvement 
+over the TextRank baseline, demonstrating the effectiveness of the transformer-based 
+approach combined with ensemble post-processing. The ensemble strategy of combining 
+extractive and abstractive summaries consistently yields better results than either approach 
+alone. 
+ 
+ 
+Table 4.2: Keyword Extraction Precision@K 
+ 
+ 
+Method 
+P@5 
+P@10 
+P@15 
+F1@10 
+TF-IDF (Baseline) 
+0.52 
+0.44 
+0.39 
+0.46 
+RAKE 
+0.58 
+0.49 
+0.43 
+0.52 
+YAKE 
+0.64 
+0.56 
+0.50 
+0.58 
+KeyBERT 
+0.72 
+0.65 
+0.58 
+0.67 
+Ensemble (Ours) 
+0.79 
+0.71 
+0.65 
+0.74 
+ 
+The ensemble keyword extraction method achieves a Precision@10 of 0.71, significantly 
+outperforming individual methods. The improvement is particularly notable for long technical 
+papers where individual methods tend to over-extract generic terms. The semantic filtering 
+from KeyBERT embeddings helps the ensemble reject surface-level frequent terms in favor of 
+conceptually important ones. 
+4.4 Topic Modelling Results 
+BERTopic applied on the 500-paper corpus successfully identified 18 coherent topics across 5 
+research domains (Computer Vision, NLP, Reinforcement Learning, Bioinformatics, and 
+10 | P a g e  
+ 
+Systems). The average topic coherence (CV) score was 0.68, compared to 0.51 for standard 
+LDA, representing a 33% improvement. Topic labels generated by c-TF-IDF were rated as 
+highly descriptive by 4 independent evaluators in a blind evaluation study. 
+4.5 User Study 
+A user study with 20 graduate students was conducted to assess the practical utility of the 
+system. Participants were asked to perform a literature review on a given topic using (a) 
+manual methods and (b) the Literature Review Assistant, and then answer a set of 
+comprehension questions. Key findings: the system reduced average review time by 62%; 
+user satisfaction score was 4.3/5.0; 85% of participants rated the keyword extraction as 
+helpful or very helpful; and 90% expressed intent to use the tool in future research activities. 
+11 | P a g e  
+ 
+CHAPTER 5: CONCLUSION & FUTURE SCOPE 
+5.1 Conclusion 
+This project presented the design, development, and evaluation of a Literature Review 
+Assistant — an NLP-powered tool for automated key point extraction from academic 
+documents. The system integrates state-of-the-art transformer models for summarization, 
+keyword extraction, named entity recognition, and topic modelling into a cohesive, user-
+friendly pipeline. 
+The experimental results demonstrate that the proposed ensemble approach achieves 
+superior performance on standard NLP benchmarks compared to baseline methods. The 
+BART + Ensemble summarization model achieved ROUGE-1 of 0.4812 and the ensemble 
+keyword extractor achieved Precision@10 of 0.71. The user study confirmed significant 
+practical benefits, with a 62% reduction in literature review time reported by participants. 
+The system fulfills all stated objectives: it successfully automates the extraction of key 
+information from academic PDFs, presents results in an organized and intuitive interface, and 
+demonstrates measurable improvements over existing approaches. This project makes a 
+meaningful contribution to the domain of AI-assisted academic research. 
+5.2 Limitations 
+Despite the promising results, the current system has several limitations. First, the abstractive 
+summarization model occasionally generates hallucinated facts, particularly for papers with 
+highly technical or domain-specific content outside its training distribution. Second, the 
+system currently supports only English-language documents. Third, processing very long 
+documents (50+ pages) requires chunking strategies that may occasionally disrupt coherent 
+summarization. Fourth, the topic modelling module requires a minimum of 5 documents to 
+produce meaningful clusters. 
+5.3 Future Scope 
+Several exciting directions are envisioned for future development: 
+12 | P a g e  
+ 
+• Multilingual Support: Extending the system to support Hindi, French, German, and 
+Chinese academic documents using multilingual BERT (mBERT) and XLM-RoBERTa 
+models. 
+• Citation Network Analysis: Integrating citation graph analysis to identify seminal 
+works and track the evolution of ideas across papers. 
+• Multi-Document Cross-Referencing: Automatically detecting contradictions, 
+agreements, and complementary findings across multiple papers in a review set. 
+• Fine-Grained Extraction: Extracting structured information such as research 
+questions, hypotheses, experimental results, and conclusions as separate fields. 
+• Real-Time Arxiv Integration: Connecting to the arXiv API to allow users to search and 
+import papers directly into the review pipeline without manual PDF uploads. 
+• Active Learning for Personalization: Incorporating user feedback to fine-tune 
+keyword relevance rankings and summary style preferences over time. 
+• Browser Extension: Developing a Chrome extension that applies the key point 
+extraction directly on web-based paper viewers like Semantic Scholar and Google 
+Scholar. 
+ 
+In conclusion, the Literature Review Assistant represents a significant step towards intelligent, 
+AI-assisted academic research workflows. With continued development and broader 
+deployment, it has the potential to democratize access to cutting-edge research insights and 
+substantially reduce the time-to-knowledge for researchers worldwide. 
+13 | P a g e  
+ 
+REFERENCES 
+────────────────────────── 
+ 
+[1] Bahdanau, D., Cho, K., and Bengio, Y. (2015). 'Neural Machine Translation by Jointly 
+Learning to Align and Translate'. Proceedings of ICLR 2015. 
+[2] Beltagy, I., Lo, K., and Cohan, A. (2019). 'SciBERT: A Pretrained Language Model for 
+Scientific Text'. Proceedings of EMNLP 2019, pp. 3615–3620. 
+[3] Blei, D. M., Ng, A. Y., and Jordan, M. I. (2003). 'Latent Dirichlet Allocation'. Journal of 
+Machine Learning Research, Vol. 3, pp. 993–1022. 
+[4] Campos, R., Mangaravite, V., Pasquali, A., Jorge, A., Nunes, C., and Jatowt, A. (2020). 'YAKE! 
+Keyword Extraction from Single Documents Using Multiple Local Features'. Information 
+Sciences, Vol. 509, pp. 257–289. 
+[5] Devlin, J., Chang, M. W., Lee, K., and Toutanova, K. (2019). 'BERT: Pre-training of Deep 
+Bidirectional Transformers for Language Understanding'. Proceedings of NAACL-HLT 2019, pp. 
+4171–4186. 
+[6] Grootendorst, M. (2020). 'KeyBERT: Minimal Keyword Extraction with BERT'. Zenodo. DOI: 
+10.5281/zenodo.4461265. 
+[7] Grootendorst, M. (2022). 'BERTopic: Neural Topic Modeling with a Class-based TF-IDF 
+Procedure'. arXiv preprint arXiv:2203.05794. 
+[8] Lample, G., Ballesteros, M., Subramanian, S., Kawakami, K., and Dyer, C. (2016). 'Neural 
+Architectures for Named Entity Recognition'. Proceedings of NAACL-HLT 2016, pp. 260–270. 
+[9] Lewis, M., Liu, Y., Goyal, N., Ghazvininejad, M., Mohamed, A., Levy, O., Stoyanov, V., and 
+Zettlemoyer, L. (2019). 'BART: Denoising Sequence-to-Sequence Pre-training for Natural 
+Language Generation, Translation, and Comprehension'. Proceedings of ACL 2020, pp. 7871–
+7880. 
+[10] Mihalcea, R. and Tarau, P. (2004). 'TextRank: Bringing Order into Texts'. Proceedings of 
+EMNLP 2004, pp. 404–411. 
+14 | P a g e  
+ 
+[11] Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena, M., Zhou, Y., Li, W., and 
+Liu, P. J. (2020). 'Exploring the Limits of Transfer Learning with a Unified Text-to-Text 
+Transformer'. Journal of Machine Learning Research, Vol. 21, pp. 1–67. 
+[12] Reimers, N. and Gurevych, I. (2019). 'Sentence-BERT: Sentence Embeddings using 
+Siamese BERT-Networks'. Proceedings of EMNLP-IJCNLP 2019, pp. 3982–3992. 
+[13] Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., and 
+Polosukhin, I. (2017). 'Attention Is All You Need'. Advances in Neural Information Processing 
+Systems (NeurIPS), Vol. 30. 
+[14] Zhang, Y., Qi, P., and Manning, C. D. (2018). 'Graph Convolution over Pruned Dependency 
+Trees Improves Relation Extraction'. Proceedings of EMNLP 2018, pp. 2205–2215. 
+[15] Lin, C. Y. (2004). 'ROUGE: A Package for Automatic Evaluation of Summaries'. Text 
+Summarization Branches Out Workshop, ACL 2004, pp. 74–81. 
+15 | P a g e  
+ 
+APPENDIX 
+────────────────────────── 
+ 
+ 
+Appendix A: Sample API Response (JSON) 
+The following is a sample JSON output returned by the backend API for a single uploaded 
+paper: 
+ { "title": "Literature Review Assistant", 
+ 
+"summary": "This paper proposes...", 
+"keywords": ["NLP", "BERT", "summarization", "extraction"], 
+"entities": { "methods": ["BERT", "LDA"], "datasets": ["arXiv"] }, 
+"topics": ["Topic 1: NLP Methods", "Topic 2: Deep Learning"] } 
+ 
+ 
+Appendix B: System Requirements 
+ 
+Component 
+Minimum Requirement 
+Recommended 
+OS 
+Ubuntu 20.04 / Windows 10 
+Ubuntu 22.04 
+CPU 
+Intel i5, 4 cores 
+Intel i7/i9, 8+ cores 
+RAM 
+8 GB 
+16–32 GB 
+GPU 
+NVIDIA GTX 1060 (6GB) 
+NVIDIA RTX 3070+ (8GB+) 
+Storage 
+20 GB SSD 
+50 GB SSD 
+Python 
+3.8+ 
+3.10 
+CUDA 
+11.x 
+11.8 
+ 
+Appendix C: Installation Guide 
+To set up the Literature Review Assistant locally, follow these steps: 
+ 
+1. Clone the repository: git clone https://github.com/[username]/lit-review-assistant 
+2. Install Python dependencies: pip install -r requirements.txt 
+3. Download pre-trained models: python scripts/download_models.py 
+4. Install frontend dependencies: cd frontend && npm install 
+5. Start the backend server: uvicorn app.main:app --reload 
+6. Start the frontend: npm start (accessible at http://localhost:3000) 

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeriScribe — Academic Intelligence Engine</title>
+    <!-- Google Fonts: Inter and JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- jsPDF for Advanced Exports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Floating Background Flowers -->
+    <div class="floating-elements">
+        <svg viewBox="0 0 100 100" class="floating-flower flower-1">
+            <path fill="#FACC15" d="M50 20 C60 0, 80 15, 65 35 C85 20, 100 40, 80 55 C100 70, 85 90, 65 75 C80 95, 60 110, 50 90 C40 110, 20 95, 35 75 C15 90, 0 70, 20 55 C0 40, 15 20, 35 35 C20 15, 40 0, 50 20 Z" />
+            <circle cx="50" cy="50" r="15" fill="#B45309" />
+        </svg>
+        <svg viewBox="0 0 100 100" class="floating-flower flower-2">
+            <path fill="#FACC15" d="M50 20 C60 0, 80 15, 65 35 C85 20, 100 40, 80 55 C100 70, 85 90, 65 75 C80 95, 60 110, 50 90 C40 110, 20 95, 35 75 C15 90, 0 70, 20 55 C0 40, 15 20, 35 35 C20 15, 40 0, 50 20 Z" />
+            <circle cx="50" cy="50" r="15" fill="#D97706" />
+        </svg>
+        <svg viewBox="0 0 100 100" class="floating-flower flower-3">
+            <path fill="#FDE047" d="M50 20 C60 0, 80 15, 65 35 C85 20, 100 40, 80 55 C100 70, 85 90, 65 75 C80 95, 60 110, 50 90 C40 110, 20 95, 35 75 C15 90, 0 70, 20 55 C0 40, 15 20, 35 35 C20 15, 40 0, 50 20 Z" />
+            <circle cx="50" cy="50" r="15" fill="#451A03" />
+        </svg>
+        <svg viewBox="0 0 100 100" class="floating-flower flower-4">
+            <path fill="#FACC15" d="M50 20 C60 0, 80 15, 65 35 C85 20, 100 40, 80 55 C100 70, 85 90, 65 75 C80 95, 60 110, 50 90 C40 110, 20 95, 35 75 C15 90, 0 70, 20 55 C0 40, 15 20, 35 35 C20 15, 40 0, 50 20 Z" />
+            <circle cx="50" cy="50" r="15" fill="#B45309" />
+        </svg>
+        <svg viewBox="0 0 100 100" class="floating-flower flower-5">
+            <path fill="#FDE047" d="M50 20 C60 0, 80 15, 65 35 C85 20, 100 40, 80 55 C100 70, 85 90, 65 75 C80 95, 60 110, 50 90 C40 110, 20 95, 35 75 C15 90, 0 70, 20 55 C0 40, 15 20, 35 35 C20 15, 40 0, 50 20 Z" />
+            <circle cx="50" cy="50" r="15" fill="#D97706" />
+        </svg>
+        <svg viewBox="0 0 100 100" class="floating-flower flower-6">
+            <path fill="#FACC15" d="M50 20 C60 0, 80 15, 65 35 C85 20, 100 40, 80 55 C100 70, 85 90, 65 75 C80 95, 60 110, 50 90 C40 110, 20 95, 35 75 C15 90, 0 70, 20 55 C0 40, 15 20, 35 35 C20 15, 40 0, 50 20 Z" />
+            <circle cx="50" cy="50" r="15" fill="#451A03" />
+        </svg>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+        <i data-lucide="check-circle" class="emerald-icon"></i> <span id="toast-message">Copied to clipboard!</span>
+    </div>
+
+    <div class="container">
+        <!-- SCREEN 1: Landing / Upload Zone -->
+        <div id="screen-upload" class="screen view-active">
+            <header class="hero">
+                <div class="logo-container">
+                    <h1 class="gradient-text">VeriScribe</h1>
+                </div>
+                <p class="tagline">Transform documents into insights — powered by AI, running on your machine</p>
+            </header>
+
+            <div class="upload-wrapper">
+                <div class="orbit-ring ring-1"></div>
+                <div class="orbit-ring ring-2"></div>
+                <div class="orbit-ring ring-3"></div>
+                
+                <div class="upload-zone" id="drop-zone">
+                    <input type="file" id="file-input" accept=".pdf,.docx,.txt" hidden>
+                    <div class="upload-content">
+                        <i data-lucide="cloud-upload" class="upload-icon animated-float"></i>
+                        <p class="upload-cta"><strong>Drag & drop your document here</strong></p>
+                        <p class="upload-or">or <span class="cyan-link" id="browse-btn">click to browse</span></p>
+                        
+                        <div class="format-badges">
+                            <span class="badge badge-pink">PDF</span>
+                            <span class="badge badge-cyan">DOCX</span>
+                            <span class="badge badge-violet">TXT</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="upload-error" class="error-message hidden"></div>
+        </div>
+
+        <!-- SCREEN 2: File Preview & Options -->
+        <div id="screen-preview" class="screen preview-card hidden">
+            <button id="btn-back" class="link-back"><i data-lucide="arrow-left"></i> Upload different file</button>
+            
+            <div class="file-info-bar">
+                <div class="file-title-wrap">
+                    <i data-lucide="file-text" id="file-icon" class="cyan-icon"></i>
+                    <h2 id="file-name" class="truncate" title="">filename.pdf</h2>
+                </div>
+                <div class="file-meta">
+                    <span id="file-size" class="meta-badge">2.4 MB</span>
+                    <span id="file-pages" class="meta-badge">12 Pages</span>
+                </div>
+            </div>
+
+            <div class="stats-large">
+                <span id="word-count" class="stat-number cyan-text">0</span>
+                <span class="stat-label">WORDS EXTRACTED</span>
+            </div>
+
+            <div class="text-preview">
+                <div class="preview-header">
+                    <span>Document Preview (First 500 chars)</span>
+                    <button class="icon-btn" id="btn-expand-preview" title="Expand"><i data-lucide="maximize-2"></i></button>
+                </div>
+                <!-- Need to store the full text hidden in JS, display snippet here -->
+                <div class="preview-content-wrap">
+                    <pre id="preview-text">Loading...</pre>
+                    <div class="fade-overlay bottom"></div>
+                </div>
+            </div>
+
+            <div class="mode-section">
+                <h3>Select Summary Mode</h3>
+                <div class="segmented-control" id="mode-selector">
+                    <button class="mode-pill active" data-mode="abstract">Abstract</button>
+                    <button class="mode-pill" data-mode="brief">Brief</button>
+                    <button class="mode-pill" data-mode="key_points">Key Points</button>
+                    <button class="mode-pill" data-mode="detailed">Detailed</button>
+                    <button class="mode-pill" data-mode="authentic">Authentic Extract</button>
+                </div>
+            </div>
+
+            <button id="btn-generate" class="btn-primary glow-cyan">
+                <i data-lucide="sparkles"></i> Generate Summary
+            </button>
+        </div>
+
+        <!-- SCREEN 3: Generating (Streaming) -->
+        <div id="screen-generating" class="screen generating-card hidden">
+            <div class="generation-header">
+                <div class="thinking-orb"></div>
+                <div class="generation-status">
+                    <h2 id="generation-stage">Analyzing your document...</h2>
+                    <span class="timer" id="generation-timer">⏱ 0.0s elapsed</span>
+                </div>
+                <button id="btn-cancel" class="btn-ghost-red"><i data-lucide="x"></i> Cancel</button>
+            </div>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="generation-progress"></div>
+            </div>
+
+            <div class="streaming-content-wrap">
+                <p id="streaming-text" class="streaming-text"></p><span id="cursor" class="cursor hidden">|</span>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: Summary Complete -->
+        <div id="screen-result" class="screen result-card hidden">
+            <div class="success-header">
+                <h2 class="emerald-text"><i data-lucide="check-circle"></i> Summary Generated</h2>
+                <div class="confetti" id="confetti-container"></div>
+            </div>
+
+            <div class="metadata-section">
+                <div class="keywords-container" id="keywords-container">
+                    <!-- Badges will be generated via app.js -->
+                </div>
+                <div class="entities-container" id="entities-container" style="margin-top: 10px;">
+                    <!-- Entity Badges -->
+                </div>
+            </div>
+            <div class="summary-box">
+                <p id="final-summary-text"></p>
+            </div>
+
+            <div class="result-stats">
+                <span class="meta-badge" id="result-word-count">238 words</span>
+                <span class="meta-badge" id="result-time">Generated in 3.8s</span>
+                <span class="meta-badge" id="result-mode">Abstract mode</span>
+                <span class="meta-badge emerald-text" id="result-saved-time"><i data-lucide="clock"></i> Saved 5 mins</span>
+            </div>
+
+            <div class="action-buttons">
+                <button id="btn-copy" class="btn-ghost align-center"><i data-lucide="copy"></i> <span>Copy</span></button>
+                <button id="btn-download" class="btn-ghost violet-hover align-center" title="Download Report"><i data-lucide="download"></i> Download PDF</button>
+                <button id="btn-new" class="btn-primary align-center"><i data-lucide="rotate-ccw"></i> New Document</button>
+            </div>
+            
+            <div class="footer-note slate-text">
+                Powered by DistilBART · Running locally · Your data never leaves this machine <i data-lucide="lock" class="inline-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+
+    <!-- Global Footer Credit -->
+    <footer class="app-footer">
+        Designed & Developed by <strong>Ultron</strong>
+    </footer>
+</body>
+</html>
