@@ -1,3 +1,12 @@
+---
+title: VeriScribe
+emoji: 🌻
+colorFrom: yellow
+colorTo: orange
+sdk: docker
+app_port: 7860
+---
+
 <div align="center">
 
 # 🌻 VeriScribe: Academic Intelligence Engine
