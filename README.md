@@ -22,9 +22,6 @@ app_port: 7860
 
 > *VeriScribe is a locally-hosted, privacy-first desktop application engineered specifically for researchers, students, and professionals who need to read dense, 30-page academic documents instantly—without relying on expensive or hallucination-prone cloud APIs.*
 
-<br/>
-<img src="veriscribe_photos/veriscribe%20dashboard.png" alt="VeriScribe Dashboard UI" width="100%" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-
 </div>
 
 ---
@@ -60,8 +57,21 @@ Research doesn't have to be boring. VeriScribe features a beautiful **Sunflower 
 - **Named Entity Recognition (NER)** via `spaCy` (Automatically identifies Authors 👤 and Organizations 🏢).
 - Instantly export your generated insights into a beautifully formatted, shareable PDF report with one click!
 
-<br/>
-<img src="veriscribe_photos/result%20or%20outtput%20screen.png" alt="VeriScribe Output Result" width="100%" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+---
+
+## 📸 Application Flow
+
+### 1. The Glassmorphic Dashboard
+Simply drag and drop your massive academic PDF or text file into the aesthetically pleasing, distraction-free upload zone.
+<div align="center">
+  <img src="veriscribe_photos/veriscribe%20dashboard.png" alt="VeriScribe Dashboard" width="800" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.5);"/>
+</div>
+
+### 2. Live Insights & Export
+Watch the AI instantly stream zero-hallucination insights using your selected algorithmic mode, complete with semantic entity tagging.
+<div align="center">
+  <img src="veriscribe_photos/result%20or%20outtput%20screen.png" alt="VeriScribe Output" width="800" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.5);"/>
+</div>
 
 ---
 
