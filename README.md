@@ -190,7 +190,22 @@ This project is licensed under the **MIT License**. You are free to use, modify,
 ---
 
 <div align="center">
+  <h2>⚡ Engineered by PROJECT ULTRON</h2>
+  <p><i>An advanced AI development initiative</i></p>
   <br/>
-  <p><strong>Designed & Developed by Ultron</strong></p>
-  <p><em>VeriScribe — Truth in Every Scribe</em></p>
+  
+  <table>
+    <tr>
+      <td align="center">
+        <br/>
+        <b>👨‍💻 Creator & Core Developer</b><br/><br/>
+        <img src="https://img.shields.io/badge/Developer-Soumen%20Bhunia-FFd600?style=for-the-badge&labelColor=1a1a1a&logo=probot&logoColor=white" alt="Soumen Bhunia" /><br/><br/>
+        <em>The core developer responsible for VeriScribe's dynamic algorithmic routing,<br/>PyTorch inference optimizations, and front-end design.</em><br/><br/>
+        <a href="https://www.linkedin.com/in/soumen-bhunia/">
+          <img src="https://img.shields.io/badge/LinkedIn-Connect%20with%20Developer-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+        </a>
+        <br/><br/>
+      </td>
+    </tr>
+  </table>
 </div>
