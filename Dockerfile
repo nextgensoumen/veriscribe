@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN python -c "from transformers import AutoTokenizer, AutoModelForSeq2SeqLM; AutoTokenizer.from_pretrained('sshleifer/distilbart-cnn-12-6'); AutoModelForSeq2SeqLM.from_pretrained('sshleifer/distilbart-cnn-12-6')"
 RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 RUN python -m spacy download en_core_web_sm
+RUN python -m nltk.downloader punkt punkt_tab
 
 # Copy the rest of the application
 COPY . .
